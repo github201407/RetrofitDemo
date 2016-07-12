@@ -9,8 +9,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mine.demo.retrofitdemo.MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/inputUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="github201407"
+        android:hint="please input userName" />
+
+    <Button
+        android:id="@+id/getUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/inputUserName"
+        android:text="Get Info" />
+
+    <TextView
+        android:id="@+id/showInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputUserName" />
 </RelativeLayout>
