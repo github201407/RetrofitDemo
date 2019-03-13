@@ -6,6 +6,9 @@ import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.model.GitModel;
 import com.mine.demo.retrofitdemo.view.inf.IGitView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Observer;
 
 /**
@@ -53,20 +56,20 @@ public class GitPresenter {
         });
     }
 
-//    /**
-//     * 获取用户信息
-//     */
-//    public void getUserInfo() {
-//        gitModel.sendUserInfoRequest(iGitView.getUserName(), new Callback<UserInfo>() {
-//            @Override
-//            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-//                iGitView.setUserInfo(response.body());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserInfo> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    /**
+     * 获取用户信息
+     */
+    public void getUserInfoCall() {
+        gitModel.sendUserInfoRequest(iGitView.getUserName(), new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                iGitView.setUserInfo(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+
+            }
+        });
+    }
 }

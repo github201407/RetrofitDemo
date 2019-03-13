@@ -3,6 +3,8 @@ package com.mine.demo.retrofitdemo.model;
 import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.http.service.GitHubService;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -42,14 +44,14 @@ public class GitModel {
                 .observeOn(AndroidSchedulers.mainThread())
         .subscribe(subscriber);
     }
-//
-//    /**
-//     * 发送用户信息请求
-//     * @param userName
-//     * @param callBack
-//     */
-//    public void sendUserInfoRequest(String userName, Callback<UserInfo> callBack) {
-//        Call<UserInfo> repos = service.getUserInfo(userName);
-//        repos.enqueue(callBack);
-//    }
+
+    /**
+     * 发送用户信息请求
+     * @param userName
+     * @param callBack
+     */
+    public void sendUserInfoRequest(String userName, Callback<UserInfo> callBack) {
+        Call<UserInfo> repos = service.getUserInfoCall(userName);
+        repos.enqueue(callBack);
+    }
 }

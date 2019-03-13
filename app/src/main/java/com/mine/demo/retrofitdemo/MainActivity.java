@@ -17,6 +17,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     private GitPresenter gitPresenter;
     private TextView showInfo;/*显示用户信息*/
     private EditText inputUserName;/*填写用户名*/
+    private Button getUserInfoCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     public void initView() {
         inputUserName = (EditText) findViewById(R.id.inputUserName);
         getInfoBtn = (Button) findViewById(R.id.getUserInfo);
+        getUserInfoCall = (Button) findViewById(R.id.getUserInfoCall);
         showInfo = (TextView) findViewById(R.id.showInfo);
     }
 
@@ -42,6 +44,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     @Override
     public void initListener() {
         getInfoBtn.setOnClickListener(this);
+        getUserInfoCall.setOnClickListener(this);
     }
 
     /**
@@ -72,6 +75,10 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
         switch (v.getId()) {
             case R.id.getUserInfo:
                 gitPresenter.getUserInfo();
+                break;
+            case R.id.getUserInfoCall:
+                showInfo.setText("");
+                gitPresenter.getUserInfoCall();
                 break;
             default:
                 break;

@@ -29,4 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/inputUserName" />
+
+    <Button
+        android:id="@+id/getUserInfoCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/showInfo"
+        android:text="Get Info" />
 </RelativeLayout>
