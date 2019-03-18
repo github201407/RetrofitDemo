@@ -13,7 +13,7 @@ public interface IGitView {
     /**初始化Listener*/
     void initListener();
     /**设置用户信息*/
-    void setUserInfo(UserInfo userInfo);
+    void setUserInfo(String text);
     /**返回用户名*/
     String getUserName();
 }

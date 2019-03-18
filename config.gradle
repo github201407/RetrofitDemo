@@ -1,0 +1,30 @@
+/**
+ * 在主项目的根目录下创建config.gradle文件
+ * 在这里单独处理统一依赖问题
+ * 注意需要在根目录的build.gradle中进行引入
+ */
+ext {
+
+    android = [
+            compileSdkVersion : 28,
+            buildToolsVersion : '28.0.3',
+            minSdkVersion     : 14,
+            targetSdkVersion  : 28,
+            versionCode       : 1,
+            versionName       : '1.0.0'
+    ]
+
+    //Version
+    supportVersion = "28.0.0"
+    dependencies = [
+        'appcompat-v7'   : "com.android.support:appcompat-v7:28.0.0",
+        'retrofit'       : 'com.squareup.retrofit2:retrofit:2.5.0',
+        'rxjava'         : 'io.reactivex.rxjava2:rxjava:2.2.7',
+        'rxandroid'      : 'io.reactivex.rxjava2:rxandroid:2.1.1',
+        'converter-gson' : 'com.squareup.retrofit2:converter-gson:2.5.0',
+        'adapter-rxjava2': 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0',
+        'okhttp'         : 'com.squareup.okhttp3:okhttp:3.8.1',
+        'logging'        : 'com.squareup.okhttp3:logging-interceptor:3.8.1',
+        'utilcode'        : 'com.blankj:utilcode:1.23.4'
+    ]
+}

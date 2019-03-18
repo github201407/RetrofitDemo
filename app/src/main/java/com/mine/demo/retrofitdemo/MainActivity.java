@@ -18,6 +18,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     private TextView showInfo;/*显示用户信息*/
     private EditText inputUserName;/*填写用户名*/
     private Button getUserInfoCall;
+    private Button getUserInfoGet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
         getInfoBtn = (Button) findViewById(R.id.getUserInfo);
         getUserInfoCall = (Button) findViewById(R.id.getUserInfoCall);
         showInfo = (TextView) findViewById(R.id.showInfo);
+        getUserInfoGet = (Button) findViewById(R.id.getUserInfoGet);
     }
 
     /**
@@ -45,6 +47,7 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     public void initListener() {
         getInfoBtn.setOnClickListener(this);
         getUserInfoCall.setOnClickListener(this);
+        getUserInfoGet.setOnClickListener(this);
     }
 
     /**
@@ -58,11 +61,11 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
     /**
      * 设置用户信息
      *
-     * @param userInfo
+     * @param text
      */
     @Override
-    public void setUserInfo(UserInfo userInfo) {
-        showInfo.setText(userInfo.toString());
+    public void setUserInfo(String text) {
+        showInfo.setText(text);
     }
 
     /**
@@ -79,6 +82,10 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
             case R.id.getUserInfoCall:
                 showInfo.setText("");
                 gitPresenter.getUserInfoCall();
+                break;
+            case R.id.getUserInfoGet:
+                showInfo.setText("");
+                gitPresenter.getUserInfoGet();
                 break;
             default:
                 break;

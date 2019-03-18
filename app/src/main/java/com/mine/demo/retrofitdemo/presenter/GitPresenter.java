@@ -2,14 +2,17 @@ package com.mine.demo.retrofitdemo.presenter;
 
 import android.util.Log;
 
+import com.google.gson.reflect.TypeToken;
 import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.model.GitModel;
 import com.mine.demo.retrofitdemo.view.inf.IGitView;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Observer;
 
 /**
  * Git Presenter层
@@ -40,7 +43,12 @@ public class GitPresenter {
     public void getUserInfo() {
         gitModel.sendUserInfoRequest(iGitView.getUserName(), new Observer<UserInfo>() {
             @Override
-            public void onCompleted() {
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
                 Log.d(TAG, "onCompleted: ");
             }
 
@@ -51,7 +59,31 @@ public class GitPresenter {
 
             @Override
             public void onNext(UserInfo userInfo) {
-                iGitView.setUserInfo(userInfo);
+                iGitView.setUserInfo(userInfo.toString());
+            }
+        });
+    }
+
+    public void getUserInfoGet() {
+        gitModel.sendUserInfoRequestGet(iGitView.getUserName(), new TypeToken<UserInfo>(){}, new Observer<UserInfo>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, "onCompleted: ");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: ");
+            }
+
+            @Override
+            public void onNext(UserInfo userInfo) {
+                iGitView.setUserInfo(userInfo.toString());
             }
         });
     }
@@ -63,7 +95,7 @@ public class GitPresenter {
         gitModel.sendUserInfoRequest(iGitView.getUserName(), new Callback<UserInfo>() {
             @Override
             public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
-                iGitView.setUserInfo(response.body());
+                iGitView.setUserInfo(response.body().toString());
             }
 
             @Override

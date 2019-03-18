@@ -1,14 +1,17 @@
 apply plugin: 'com.android.application'
 
+def cfg = rootProject.ext.android
+def libs = rootProject.ext.dependencies
+
 android {
-    compileSdkVersion 21
-    buildToolsVersion '22.0.1'
+    compileSdkVersion cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
     defaultConfig {
         applicationId "com.mine.demo.retrofitdemo"
-        minSdkVersion 21
-        targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
     }
     buildTypes {
         release {
@@ -21,13 +24,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:21.0.0'
-    //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    //RxAndroid
-    compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    debugImplementation 'junit:junit:4.12'
+    libs.each { k, v -> implementation v }
 }
