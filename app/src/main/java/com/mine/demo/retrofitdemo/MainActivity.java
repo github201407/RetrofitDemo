@@ -11,6 +11,12 @@ import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.presenter.GitPresenter;
 import com.mine.demo.retrofitdemo.view.inf.IGitView;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
 public class MainActivity extends Activity implements IGitView, View.OnClickListener {
 
     private Button getInfoBtn;/*获取信息按钮*/
@@ -90,5 +96,12 @@ public class MainActivity extends Activity implements IGitView, View.OnClickList
             default:
                 break;
         }
+    }
+
+    public void getIpInfo(View view) {
+        showInfo.setText("");
+        String ip = "myip";
+
+        gitPresenter.getIpInfo(ip);
     }
 }

@@ -2,6 +2,8 @@ package com.mine.demo.retrofitdemo.model;
 
 import com.google.gson.reflect.TypeToken;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.mine.demo.retrofitdemo.bean.BaseResponse;
+import com.mine.demo.retrofitdemo.bean.IPInfo;
 import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.http.service.Api;
 import com.mine.demo.retrofitdemo.http.service.GitHubService;
@@ -57,8 +59,12 @@ public class GitModel {
         RxUtils.toSubscribe(Api.service().getUserInfo(userName)).subscribe(observer);
     }
 
-    public void sendUserInfoRequestGet(String userName, TypeToken<UserInfo> typeToken, Observer<? super UserInfo> observer) {
-        RxUtils.toSubscribe(Api.service().executeGet(userName)).compose(RxUtils.transToString()).compose(RxUtils.transToObject(typeToken)).subscribe(observer);
+    public void sendUserInfoRequestGet(String userName, TypeToken<UserInfo> typeToken, Observer<UserInfo> observer) {
+        RxUtils.toSubscribe(Api.service().executeGet(userName)).compose(RxUtils.transStringToObject(typeToken)).subscribe(observer);
+    }
+
+    public void getIpInfo(String ip, Observer<BaseResponse<IPInfo>> observer) {
+        RxUtils.toSubscribe(Api.service().getIpInfo(ip)).subscribe(observer);
     }
 
     /**

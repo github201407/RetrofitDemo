@@ -3,13 +3,14 @@ package com.mine.demo.retrofitdemo.presenter;
 import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
+import com.mine.demo.retrofitdemo.bean.BaseResponse;
+import com.mine.demo.retrofitdemo.bean.IPInfo;
 import com.mine.demo.retrofitdemo.bean.UserInfo;
 import com.mine.demo.retrofitdemo.model.GitModel;
 import com.mine.demo.retrofitdemo.view.inf.IGitView;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,6 +102,30 @@ public class GitPresenter {
             @Override
             public void onFailure(Call<UserInfo> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void getIpInfo(String ip) {
+        gitModel.getIpInfo(ip, new Observer<BaseResponse<IPInfo>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e("GitPresenter", "onSubscribe: [d]= " + d);
+            }
+
+            @Override
+            public void onNext(BaseResponse<IPInfo> ipInfoResponse) {
+                iGitView.setUserInfo(ipInfoResponse.code + " " + ipInfoResponse.data);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e("GitPresenter", "onError: [e]= " + e);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e("GitPresenter", "onComplete: []= ");
             }
         });
     }
